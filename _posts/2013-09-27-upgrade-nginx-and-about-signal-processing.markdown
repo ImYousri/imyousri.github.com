@@ -44,13 +44,13 @@ title: Use Signals To Upgrade Nginx's New Binary On The Fly
 这时只需将旧的 Nginx 实例的 master 直接优雅退出便可完成版本升级，即：
 {% highlight bash %}
 kill -quit `ca/usr/local/nginx/logs/nginx.pid.oldbin`
-{% highlight %}
+{% endhighlight %}
   
 但建议暂且还是先不要将旧的 master 进程，以防新升级的版本有异常问题可以快速的回滚旧实例上，详见下面的回滚操作
 
 ##### 新服务异常回滚操作
 
-接上，建议采用 {% highlight bash %} kill -winch `ca/usr/local/nginx/logs/nginx.pid.oldbin` {% highlight %}的方式只先将旧的 Nginx 实例的 work 进程优雅关闭退出，而非直接 quit 连旧的 Nginx 实例的 master 进程也优雅退出。
+接上，建议采用 {% highlight bash %} kill -winch `ca/usr/local/nginx/logs/nginx.pid.oldbin` {% endhighlight %}的方式只先将旧的 Nginx 实例的 work 进程优雅关闭退出，而非直接 quit 连旧的 Nginx 实例的 master 进程也优雅退出。
 
 因为这样此时旧的 Nginx 实例的 master 进程还在运行着也意味着仍在监听着 socket 服务，这样一旦新版本二进制服务有异常问题时，仍可以快速的回滚旧的 Nginx 实例来提供服务，只需对旧实例的 master 进程发送 HUP 信号，此时它就会再次唤起启动 work 进程来处理请求服务，同时发送 QUIT 信号到新 Nginx 实例的 master 进程关闭退出，一切就又回滚恢复到没有更新升级前的状态。
 
