@@ -55,3 +55,5 @@ source $HOME/.ssh/bashrc
 这个是自己对Terminator做了写改动后的配置文件:[$HOME/.config/terminator/config](https://gist.github.com/3950895)
 
 <script src="https://gist.github.com/Yousri/3950895.js"></script>
+
+不过，工具始终只是个辅助的功能，不要太够于依赖或看重。
