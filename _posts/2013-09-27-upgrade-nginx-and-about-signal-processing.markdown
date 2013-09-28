@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Use Signals To Upgrade Nginx's New Binary On The Fly
+title: Nginx无缝升级及其自带信号处理
 ---
 
 任何一种服务版本或插件升级都需要考虑最佳状态的无缝过渡升级（不影响任何请求服务的中断且无需人员的干涉）
