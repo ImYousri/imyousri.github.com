@@ -1,0 +1,2 @@
+pygments: true
+permalink: /writings/:year/:month/:title.html
