@@ -1,2 +1,2 @@
 pygments: true
-permalink: /writings/:year/:month/:title.html
+permalink: /writings/:title.html
