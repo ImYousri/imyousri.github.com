@@ -48,12 +48,8 @@ source $HOME/.ssh/bashrc
 
 关于这些小工具想必都比较清楚，这里记录个人下使用的配置文件：[$HOME/.tmux.conf](https://gist.github.com/3950948)
 
-<script src="https://gist.github.com/Yousri/3950948.js"></script>
-
 ##### 终端建议改用Terminator，至于原因个人觉得其支持的功能更强大，特别其group功能相当的方便。
 
 这个是自己对Terminator做了写改动后的配置文件:[$HOME/.config/terminator/config](https://gist.github.com/3950895)
-
-<script src="https://gist.github.com/Yousri/3950895.js"></script>
 
 不过，工具始终只是个辅助的功能，不要太够于依赖或看重。
