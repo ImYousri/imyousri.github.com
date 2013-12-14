@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="CDN, Nginx, DevOPS, LVS, ATS, Redis, Hadoop, Squid, Linux, Mysql, etc.">
+    <meta name="author" content="Yousri Yan" />
+    <title>升级Cacti版本: Yousri Yan: CDN, Nginx, DevOPS, LVS, ATS, Redis, Hadoop, Squid, Linux, Mysql, etc.</title>
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen, projection">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+    
+<!--    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-9028210-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+-->
+  </head>
+  <body id="post">
+    <article>
+  <div class="content">
+    <header>
+      <p><a href="/">Yousri Yan</a></p>
+      <h1>升级Cacti版本</h1>
+      <p class="date">Friday, August 03, 2012</p>
+    </header>
+    <section>
+      <p>总体步骤如下：</p>
+
+<h5 id='id3'>下载最新安装包，并且解压；</h5>
+<div class='highlight'><pre><code class='bash'>tar zxf cacti-0.8.8a.tar.gz
+</code></pre>
+</div>
+<h5 id='includeconfigphp_'>include/config.php 修改数据库信息；</h5>
+<div class='highlight'><pre><code class='bash'>vim cacti-0.8.8a/include/config.php
+</code></pre>
+</div>
+<h5 id='id4'>备份数据库；</h5>
+<div class='highlight'><pre><code class='bash'>mysqldump -ucacti -p cacti087e &gt; cacti.sql
+</code></pre>
+</div>
+<h5 id='cacti_'>备份Cacti 工作目录，采用重命名方式备份；</h5>
+<div class='highlight'><pre><code class='bash'>mv /other/web/cacti /other/web/cacti-0.8.7e
+</code></pre>
+</div>
+<h5 id='cacti'>重命名新安装包为Cacti；</h5>
+<div class='highlight'><pre><code class='bash'>mv /other/web/cacti-0.8.8a /other/web/cacti
+</code></pre>
+</div>
+<h5 id='rrdrrdrrd'>将原来的rrd文件，RRD目录复制到新版本的RRD目录；</h5>
+<div class='highlight'><pre><code class='bash'>cp -r /other/web/cacti-0.8.7e/rra /other/web/cacti/
+</code></pre>
+</div>
+<h5 id='scriptsscripts'>将原来的所有脚本文件，scripts目录复制到新版本的目录scripts中；</h5>
+<div class='highlight'><pre><code class='bash'>cp -r /other/web/cacti-0.8.7e/scripts/ /other/web/cacti/scripts/
+</code></pre>
+</div>
+<h5 id='xmlresourceresource'>将原来的XML文件，resource目录复制到新版本中的目录resource中；</h5>
+<div class='highlight'><pre><code class='bash'>cp -r /other/web/cacti-0.8.7e/resource/  /other/web/cacti/resource/
+</code></pre>
+</div>
+<h5 id='rrdlog'>修改新版本RRD、LOG目录所有者；</h5>
+<div class='highlight'><pre><code class='bash'>chown -R cactiuser /other/web/cacti
+</code></pre>
+</div>
+<h5 id='httpipcacti'>打开http://ip/cacti/链接进行安装升级数据库；</h5>
+<div class='highlight'><pre><code class='bash'>http://192.168.1.120/cacti/
+</code></pre>
+</div>
+<h5 id='id5'>测试；</h5>
+    </section>
+  </div>
+</article>
+<aside>
+  <div class="content">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_identifier = "/writings/2012/08/how-to-update-cacti";
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = 'http://yousri.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=michaeldwan">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</aside>
+<footer>
+  <div class="content">
+    <p>Copyright 2013 Yousri Yan</p>
+  </div>
+</footer>
+
+  </body>
+</html>
