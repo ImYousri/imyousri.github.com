@@ -42,8 +42,9 @@ title: Nginx无缝升级及其自带信号处理
   ![](http://lifecycles.b0.upaiyun.com/nginx-upgrade.png!fw600)
 
 这时只需将旧的 Nginx 实例的 master 直接优雅退出便可完成版本升级，即：
+
 {% highlight bash %}
-kill -quit `ca/usr/local/nginx/logs/nginx.pid.oldbin`
+	kill -quit `ca/usr/local/nginx/logs/nginx.pid.oldbin`
 {% endhighlight %}
   
 但建议暂且还是先不要将旧的 master 进程，以防新升级的版本有异常问题可以快速的回滚旧实例上，详见下面的回滚操作
