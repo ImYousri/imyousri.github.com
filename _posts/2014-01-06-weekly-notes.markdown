@@ -14,7 +14,7 @@ title: Weekly-notes-at-2014-01-06
 
 淘宝在原生基础上综合新增了LVS-FULLNAT模式，在NAT模式的基础做了些相应改进，将客户端源包全部转化成LVS local源包与RealServer通信。具体原理可见来自其PPT：（这里存在一个问题：RealServer看不到实际客户端来源信息，全部都是变成来自LVS local的'客户端'源，所以要查看到还需要RealServer内核上打淘宝提供的补丁，而且内核要求相对较新2.6.32这2点比较麻烦）
 
-![LVS-FULLNAT工作原理](http://img.hb.aicdn.com/9e148efa96f002bd105f1fb0a409f2e9fb93519050275-HUAnX2_fw658)
+![LVS-FULLNAT工作原理](http://yousri-pic.b0.upaiyun.com/lvs-fullnat.png)
 
 
 具体安装使用结合官网说明对于  [IPVS FULLNAT and SYNPROXY](http://kb.linuxvirtualserver.org/wiki/IPVS_FULLNAT_and_SYNPROXY) 的介绍 ，后来回头再看了遍之前在小米运维部的NoOPS博客见到那篇[LVS-ospf集群](http://noops.me/?p=974)（可以说是LVS NAT Cluster的实现吧），总算理解。
