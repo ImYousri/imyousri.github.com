@@ -34,8 +34,8 @@ vm.swappiness = 0
 ### 三、文件系统
 
 {% highlight bash %}
-echo 16 > /sys/block/sdb/queue/read\_ahead\_kb #减少预读
-echo 512 > /sys/block/sdb/queue/nr\_requests #增加队列
+echo 16 > /sys/block/sdb/queue/read_ahead_kb #减少预读
+echo 512 > /sys/block/sdb/queue/nr_requests #增加队列
 {% endhighlight %}
 
 b)IO调度策略修改为deadline。
