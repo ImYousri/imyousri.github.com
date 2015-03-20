@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="CDN, Nginx, DevOPS, LVS, ATS, Redis, Hadoop, Squid, Linux, Mysql, etc.">
+    <meta name="author" content="Yousri Yan" />
+    <title>改善工具配置简单操作运维: Yousri Yan: CDN, Nginx, DevOPS, LVS, ATS, Redis, Hadoop, Squid, Linux, Mysql, etc.</title>
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen, projection">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+    
+<!--    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-9028210-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+-->
+  </head>
+  <body id="post">
+    <article>
+  <div class="content">
+    <header>
+      <p><a href="/">Yousri Yan</a></p>
+      <h1>改善工具配置简单操作运维</h1>
+      <p class="date">Sunday, October 28, 2012</p>
+    </header>
+    <section>
+      <p>记录分享下自己日常工作中使用的到一些工具如ssh、tmux、terminator等按个人习惯对其做了相应配置以保持简洁傻瓜式方便。</p>
+
+<p>其中涉及到的配置文件主要有</p>
+
+<ul>
+<li>ssh的用户配置文件$HOME/.ssh/config</li>
+
+<li>tmux的$HOME/.tmux.conf</li>
+
+<li>terminator终端工具配置文件$HOME/.config/terminator/config</li>
+</ul>
+
+<p>以及可能涉及到$HOME/.bashrc等</p>
+
+<h5 id='homesshconfig'>修改配置$HOME/.ssh/config让你生活更简单（省心省事）</h5>
+
+<p>通常默认情况我们使用以下方式ssh连接：</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ssh</span> username@hostname/ip -p port
+</code></pre>
+</div>
+<p>机器一多的话每次都要输入一串便会令人感觉繁琐，如果再加上实现没有使用ssh-copy-id功能采用公密钥认证方式登陆的话，每次都还要手动输入密码的话就更浪费时间。</p>
+
+<p>改善后，很多人或许会想到结合$HOME/.bashrc的别名alias功能，在此配置文件添加相应的别名如下：</p>
+
+<p><div class='highlight'><pre><code class='bash'><span class='nb'>alias </span><span class='nv'>name</span><span class='o'>=</span><span class='s1'>&#39;ssh username@hostname/ip -p port&#39;</span>
+</code></pre>
+</div></p>
+
+<p>其实这里如果知道<code>ssh_config</code>这东西的话，可以直接修改$HOME/.ssh/config如下:</p>
+<div class='highlight'><pre><code class='bash'>host name
+hostname hostip
+user username
+port port
+</code></pre>
+</div>
+<p>如此一来，你只需要使用命令<code>ssh name</code>连接管理。或许你也发现这样一来ssh还是需要每次重复输入，是的，所以可以结合前面的$HOME/.bashrc别名进一步处理。</p>
+
+<p>单独创建一个ssh连接的别名文件为：$HOME/.ssh/bashrc 内容类似于：</p>
+<div class='highlight'><pre><code class='bash'><span class='nb'>alias </span><span class='nv'>name</span><span class='o'>=</span><span class='s1'>&#39;ssh name&#39;</span>
+</code></pre>
+</div>
+<p>然后将此文件加载到用户目录下的bashrc配置文件结尾，编辑$HOME/.bashrc后，执行source $HOME/.bashrc使其生效：</p>
+<div class='highlight'><pre><code class='bash'><span class='nb'>source</span> <span class='nv'>$HOME</span>/.ssh/bashrc
+</code></pre>
+</div>
+<p>这样以后就只需输入相应的name（如个人这里取地区名称简写加ip末尾为name）回车执行即可。</p>
+
+<h5 id='tmuxscreen'>再结合一些小工具如tmux/screen的可以更方便管理操作</h5>
+
+<p>关于这些小工具想必都比较清楚，这里记录个人下使用的配置文件：<a href='https://gist.github.com/3950948'>$HOME/.tmux.conf</a></p>
+
+<h5 id='terminatorgroup'>终端建议改用Terminator，至于原因个人觉得其支持的功能更强大，特别其group功能相当的方便。</h5>
+
+<p>这个是自己对Terminator做了写改动后的配置文件:<a href='https://gist.github.com/3950895'>$HOME/.config/terminator/config</a></p>
+
+<p>不过，工具始终只是个辅助的功能，不要太够于依赖或看重。</p>
+    </section>
+  </div>
+</article>
+<aside>
+  <div class="content">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_identifier = "/writings/2012/10/how-to-keep-it-simple-stupid-with-ssh-tmux-terminator-config-file";
+      (function() {
+       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+       dsq.src = 'http://yousri.disqus.com/embed.js';
+       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=michaeldwan">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</aside>
+<footer>
+  <div class="content">
+    <p>Copyright 2013 Yousri Yan</p>
+  </div>
+</footer>
+
+  </body>
+</html>
