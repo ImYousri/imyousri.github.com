@@ -3,7 +3,8 @@
 name: Deploy VitePress site to Pages
 
 on:
-  # Runs on pushes targeting the `main` branch. Change this to `master` if you're using the `master` branch as the default branch.
+  # Runs on pushes targeting the `main` branch. Change this to `master` if you're
+  # using the `master` branch as the default branch.
   push:
     branches: [main]
 
@@ -34,17 +35,17 @@ jobs:
       # - uses: pnpm/action-setup@v2 # Uncomment this if you're using pnpm
       # - uses: oven-sh/setup-bun@v1 # Uncomment this if you're using Bun
       - name: Setup Node
-        uses: pnpm/action-setup@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: pnpm # or pnpm / yarn
+          cache: npm # or pnpm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
-        run: pnpm install # or pnpm install / yarn install / bun install
+        run: npm ci # or pnpm install / yarn install / bun install
       - name: Build with VitePress
         run: |
-          pnpm build # or pnpm docs:build / yarn docs:build / bun run docs:build
+          npm run build # or pnpm docs:build / yarn docs:build / bun run docs:build
           touch docs/.vitepress/dist/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
