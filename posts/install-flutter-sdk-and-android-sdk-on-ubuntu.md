@@ -1,5 +1,5 @@
 ---
-date: 2024-03-10
+date: 2024-02-10
 title:  Install Flutter SDK and Android SDK on Ubuntu
 tags:
 - Flutter
