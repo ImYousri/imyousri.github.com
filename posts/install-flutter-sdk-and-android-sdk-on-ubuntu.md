@@ -20,7 +20,7 @@ apt install openjdk-17-jdk
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64/"
 ```
 ## Install the Flutter SDK
-* Download the flutter sdk package from [SDK archive](https://docs.flutter.dev/release/archive),for example the latest stable release veriso is 3.19.4
+* Download the flutter sdk package from [SDK archive](https://docs.flutter.dev/release/archive),for example the latest stable release version is 3.19.4
 ```bash
 wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.4-stable.tar.xz
 ```
@@ -85,4 +85,5 @@ export PATH="$PATH:/opt/flutter/bin::/opt/flutter3.16.5/bin"
 ## References
 [Install Flutter on Linux](https://docs.flutter.dev/get-started/install/linux/android?tab=virtual)  
 [Command-line-tools](https://developer.android.google.cn/tools)  
-[sdkmanager](https://developer.android.google.cn/tools/sdkmanager)
+[sdkmanager](https://developer.android.google.cn/tools/sdkmanager)  
+[cmdline-tools with JDK](https://micro.blog.csdn.net/article/details/134024106)
