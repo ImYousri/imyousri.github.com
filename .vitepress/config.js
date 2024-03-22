@@ -15,7 +15,7 @@ export default defineConfig({
         website: 'https://twitter.com/yousri', //copyright link
         // 评论的仓库地址
         comment: {
-            repo: 'yousri/yousri.github.com',
+            repo: 'imyousri/imyousri.github.com',
             themes: 'github-light',
             issueTerm: 'pathname'
         },
