@@ -83,5 +83,6 @@ export PATH="$PATH:/opt/flutter/bin::/opt/flutter3.16.5/bin"
 ```
 
 ## References
+[Install Flutter on Linux](https://docs.flutter.dev/get-started/install/linux/android?tab=virtual)  
 [Command-line-tools](https://developer.android.google.cn/tools)  
 [sdkmanager](https://developer.android.google.cn/tools/sdkmanager)
