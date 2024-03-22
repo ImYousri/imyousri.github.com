@@ -5,7 +5,7 @@ import { getPosts } from './theme/serverUtils'
 const pageSize = 5
 
 export default defineConfig({
-    title: 'Work Notes',
+    title: 'Work Notes By Yousri',
     base: '/',
     cacheDir: './node_modules/vitepress_cache',
     description: 'weekly notest,salogs,logs',
