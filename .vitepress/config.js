@@ -5,7 +5,7 @@ import { getPosts } from './theme/serverUtils'
 const pageSize = 5
 
 export default defineConfig({
-    title: 'Tech tips logs',
+    title: 'Work Notes',
     base: '/',
     cacheDir: './node_modules/vitepress_cache',
     description: 'weekly notest,salogs,logs',
