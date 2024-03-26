@@ -63,9 +63,9 @@ sudo systemctl restart containerd
 ```
 After restarting containerd, it should run using the specified non-root user and group as configured in the config.toml file.   
 Make sure that the non-root user has the necessary permissions to access the required resources such as sockets, directories, etc., as mentioned in the previous response.
-* `/run/containerd/containerd.sock`
-* `/var/lib/containerd`
-* `/etc/containerd`
+  * `/run/containerd/containerd.sock`
+  * `/var/lib/containerd`
+  * `/etc/containerd`  
 You can use the chown and chmod commands to adjust ownership and permissions accordingly:
 ```bash
 sudo chown -R <non-root-user>:<group> /run/containerd /var/lib/containerd /etc/containerd
