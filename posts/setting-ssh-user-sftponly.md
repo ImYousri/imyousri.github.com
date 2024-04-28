@@ -6,7 +6,9 @@ tags:
 - sftp
 description: setting ssh user allow use sftp only,but can't login and use shell and so on;
 ---
+# 配置用户只允许 sftp
 配置用户只允许通过 pub key 验证方式使用 `sftp` 功能，但不允许 ssh 登录到服务器上；  
+
 ## 创建用户并设置用户组权限
 ```bash
 groupadd sftponly
