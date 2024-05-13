@@ -4,8 +4,7 @@ title:  调研基于 IIS 的 dotnet 项目接入现有 CI/CD 的方式
 tags:
 - dotnet
 - .NET
-- CI
-- CD
+- CI/CD
 - IIS
 - Windows
 description: 有个业务项目使用是古老的 .NET core 2.0 实现的，依赖部署在 Windows系统的 IIS 服务上，希望接入目前已有再用的基于 linux 的 ci/cd 工作流中

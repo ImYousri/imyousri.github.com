@@ -2,7 +2,8 @@
 date: 2024-05-13
 title:  实现 .NET Framework 业务项目接入 Jenkins CI/CD 到 Windows IIS
 tags:
-- .NET Framework
+- .NET
+- FrameWork
 - IIS
 - WebDeploy
 - Web
