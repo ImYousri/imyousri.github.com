@@ -109,6 +109,35 @@ client_max_body_size 256m;
 这个参数需要重启 nginx 才可生效，reload 是无法生效
 :::
 
+* 推荐用 Content-Security-Policy 替代 X-Frame-Options
+```yaml
+#add_header X-Frame-Options SAMEORIGIN;
+add_header Content-Security-Policy: "frame-ancestors 'self' https://*.your-domain.com https://*.yousri-domain-2.com;";
+```
+* Nginx 当 proxy 使用重写到后端服务 `HOST` 头域名时解析域名的逻辑
+```yaml
+proxy_set_header Host dev.yousri.org;
+``` 
+在启动或重载配置时解析域名为 IP 地址，并将解析结果缓存，以避免在每次请求中重复进行 DNS 查询:  
+** DNS 解析时间：  
+当 Nginx 读取配置文件时（启动或重载时），会解析域名并将其解析为 IP 地址。  
+如果解析成功，Nginx 缓存该结果并使用此 IP 地址处理请求。  
+
+** DNS 缓存：  
+Nginx 默认不主动刷新 DNS 缓存，除非重新加载配置（nginx -s reload）。  
+如果目标后端的 IP 地址发生变化，可能导致代理失败
+
+** 动态 DNS 更新问题
+如果后端服务的 IP 地址可能会动态变化（例如使用云服务或负载均衡），Nginx 默认的静态 DNS 解析机制可能无法及时更新,可以使用以下配置解决：  
+配置 resolver 指令  
+Nginx 提供了 resolver 指令，用于动态 DNS 解析，允许在运行时重新解析域名：
+```yaml
+http {
+    resolver 8.8.8.8 valid=10s;  # 指定 DNS 服务器，缓存时间为 10 秒
+    resolver_timeout 5s; # 超时时间
+}
+```
+
 ## Apache
 业务层面原本希望在入口 Haproxy 增加一个配置， 当一个请求 如果有 x-request-id 这个请求头， 则代理的时候也需要把这个请求头传递下去， 如果没有 则 haproxy 用  uuid() 创建一个，然后传递下去。Haproxy access log 需要显示 这个 x-request-id;
 
