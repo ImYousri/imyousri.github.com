@@ -102,7 +102,7 @@ alias 只能在location中使用;
 
 ## **关于反向代理功能配置相关**
 * Proxy 配置允许最大上传配置
-```yaml
+```nginx
 client_max_body_size 256m;
 ```
 ::: tip
@@ -110,12 +110,12 @@ client_max_body_size 256m;
 :::
 
 * 推荐用 Content-Security-Policy 替代 X-Frame-Options
-```yaml
+```nginx
 #add_header X-Frame-Options SAMEORIGIN;
 add_header Content-Security-Policy: "frame-ancestors 'self' https://*.your-domain.com https://*.yousri-domain-2.com;";
 ```
 * Nginx 当 proxy 使用重写到后端服务 `HOST` 头域名时解析域名的逻辑
-```yaml
+```nginx
 proxy_set_header Host dev.yousri.org;
 ``` 
 在启动或重载配置时解析域名为 IP 地址，并将解析结果缓存，以避免在每次请求中重复进行 DNS 查询:  
@@ -131,7 +131,7 @@ Nginx 默认不主动刷新 DNS 缓存，除非重新加载配置（nginx -s rel
 如果后端服务的 IP 地址可能会动态变化（例如使用云服务或负载均衡），Nginx 默认的静态 DNS 解析机制可能无法及时更新,可以使用以下配置解决：  
 配置 resolver 指令  
 Nginx 提供了 resolver 指令，用于动态 DNS 解析，允许在运行时重新解析域名：
-```yaml
+```nginx
 http {
     resolver 8.8.8.8 valid=10s;  # 指定 DNS 服务器，缓存时间为 10 秒
     resolver_timeout 5s; # 超时时间
